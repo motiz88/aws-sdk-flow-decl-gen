@@ -1,0 +1,16 @@
+[ignore]
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/data/.*
+<PROJECT_ROOT>/test/data/.*
+<PROJECT_ROOT>/test/artifacts/.*
+.*/node_modules/babel-.*
+.*/node_modules/mocha.*
+.*/node_modules/esformatter.*
+.*/node_modules/npmconf.*
+.*/node_modules/config-chain/test.*
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$Flow\\(FixMe\\|Issue\\)
+
+[libs]
+decls/

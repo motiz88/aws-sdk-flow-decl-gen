@@ -1,0 +1,7 @@
+[submodule "test/data/aws-sdk"]
+	path = test/data/aws-sdk
+	url = https://github.com/aws/aws-sdk-js.git
+
+[submodule "submodules/astring"]
+	path = submodules/astring
+	url = https://github.com/motiz88/astring.git

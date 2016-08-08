@@ -1,0 +1,42 @@
+{
+  "extends": ["semistandard"],
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel",
+    "flowtype"
+  ],
+  "rules": {
+      "babel/generator-star-spacing": [2, { "before": true, "after": true }],
+      "generator-star-spacing": 0,
+      "babel/new-cap": [2, { "newIsCap": true, "capIsNew": false }],
+      "new-cap": 0,
+      "babel/func-params-comma-dangle": [2, "never"],
+      "no-var": "error",
+      "prefer-const": "error",
+      "no-console": "error",
+      "flowtype/define-flow-type": 1,
+      "flowtype/require-parameter-type": 1,
+      "flowtype/require-return-type": [
+          1,
+          "always",
+          {
+              "annotateUndefined": "never"
+          }
+      ],
+      "flowtype/space-after-type-colon": [
+          1,
+          "always"
+      ],
+      "flowtype/space-before-type-colon": [
+          1,
+          "never"
+      ],
+      "flowtype/type-id-match": 0,
+      "flowtype/use-flow-type": 1
+  },
+  "settings": {
+      "flowtype": {
+          "onlyFilesWithFlowAnnotation": true
+      }
+  }
+}
