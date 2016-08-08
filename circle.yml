@@ -10,11 +10,6 @@ test:
     - cp test/artifacts/* $CIRCLE_ARTIFACTS/
     - npm run coverage:html -- --report-dir $CIRCLE_ARTIFACTS/coverage
     - npm run coverage:codecov && bash <(curl -s https://codecov.io/bash)
-deployment:
-  prod:
-    branch: master
-    commands:
-      - npm run semantic-release
 checkout:
   post:
     - git submodule sync --recursive
