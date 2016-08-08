@@ -3,7 +3,7 @@
 [![coverage][coverage-image]][coverage-url]
 
 [![js-semistandard-style][semistandard-image]][semistandard-url]
-[![MIT License][license-image]][license-url]
+[![Apache License, Version 2.0][license-image]][license-url]
 
 Generate Flow declaration types from the AWS SDK for JavaScript.
 
@@ -15,8 +15,8 @@ Built with [astring-flow](https://github.com/motiz88/astring-flow) and my (hopef
 
 [circle-image]: https://img.shields.io/circleci/project/motiz88/aws-sdk-flow-decl-gen.svg?style=flat-square
 [circle-url]: https://circleci.com/gh/motiz88/aws-sdk-flow-decl-gen
-[license-image]: http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[license-url]: http://motiz88.mit-license.org/
+[license-image]: https://img.shields.io/badge/license-Apache2.0-brightgreen.svg?style=flat-square
+[license-url]: http://www.apache.org/licenses/LICENSE-2.0
 [semistandard-image]: https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square
 [semistandard-url]: https://github.com/Flet/semistandard
 [coverage-image]: https://img.shields.io/codecov/c/github/motiz88/aws-sdk-flow-decl-gen.svg
