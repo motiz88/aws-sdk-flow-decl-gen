@@ -1,7 +1,7 @@
 {
   "name": "aws-sdk-flow-decl-gen",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0-semantic-release",
+  "description": "Generate Flow declaration types from the AWS SDK for JavaScript",
   "main": "index.js",
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d dist",
@@ -22,7 +22,7 @@
     "test:debug": "node-debug --no-preload --web-port 8083 _mocha"
   },
   "author": "Moti Zilberman <motiz88@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "ast-types": "^0.8.18",
     "ast-types-flow": "0.0.7",
