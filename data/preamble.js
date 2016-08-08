@@ -57,6 +57,12 @@ declare module 'aws-sdk' {
     signatureCache?: boolean
   }
 
+  declare class Config {
+    logger?: void | {write: Function} | {log: Function}
+  }
+
+  declare var config: Config;
+
   declare class Service {
     constructor (config?: $ConfigOptions): Service;
     apiVersions: string[];
