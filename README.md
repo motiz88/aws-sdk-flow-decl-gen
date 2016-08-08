@@ -7,7 +7,7 @@
 
 Generate Flow declaration types from the AWS SDK for JavaScript.
 
-`aws-sdk-flow-decl-gen` is the declaration _generator_; the actual type declarations will have their own repo.
+`aws-sdk-flow-decl-gen` is the declaration _generator_; the actual type declarations will have their own repo, but in the mean time can be viewed [here][ci-decls-url].
 
 This is an early release. Use with caution. There will be changes (to be communicated via semver, once this is on npm).
 
@@ -21,3 +21,4 @@ Built with [astring-flow](https://github.com/motiz88/astring-flow) and my (hopef
 [semistandard-url]: https://github.com/Flet/semistandard
 [coverage-image]: https://img.shields.io/codecov/c/github/motiz88/aws-sdk-flow-decl-gen.svg
 [coverage-url]: https://codecov.io/gh/motiz88/aws-sdk-flow-decl-gen
+[ci-decls-url]: https://circleci.com/api/v1/project/motiz88/aws-sdk-flow-decl-gen/latest/artifacts/0/$CIRCLE_ARTIFACTS/aws-sdk.decls.js?filter=successful&branch=master
