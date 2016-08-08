@@ -10,13 +10,19 @@ describe('translateApisDir', () => {
   const apisDir = path.resolve(__dirname, '..', 'data', 'aws-sdk', 'apis');
   describe('of actual SDK', function () {
     this.timeout(10000);
-    let decls, declFile;
-    let declWritePromise, artifactPromises;
+    let decls, declFile, declWritePromise;
+    const artifactPromises = [];
+    const artifactsDir = path.resolve(__dirname, '..', 'artifacts');
     before(async () => {
       decls = await translateApisDir(apisDir);
-      declFile = path.resolve(__dirname, '..', 'artifacts', 'aws-sdk.decls.js');
+      try {
+        await fs.mkdirp(artifactsDir);
+      } catch (e) {
+        if (e.error !== 'EEXIST') throw e;
+      }
+      declFile = path.resolve(artifactsDir, 'aws-sdk.decls.js');
       declWritePromise = fs.writeFile(declFile, decls);
-      artifactPromises = [declWritePromise];
+      artifactPromises.push(declWritePromise);
     });
     it('should parse with no errors', () => {
       const generatedAst = parseFlow(decls);
@@ -41,7 +47,7 @@ describe('translateApisDir', () => {
           flowStderr = stderr.toString();
           if (!flowStderr && !flowStdout) throw e;
         }
-        const stdoutFile = path.resolve(__dirname, '..', 'artifacts', 'flow-stdout.txt');
+        const stdoutFile = path.resolve(artifactsDir, 'flow-stdout.txt');
         artifactPromises.push(fs.writeFile(stdoutFile, flowStdout));
       });
       it('should have no errors', () => {
