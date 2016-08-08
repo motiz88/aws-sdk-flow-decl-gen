@@ -9,7 +9,7 @@
     "coverage:codecov": "nyc report --reporter=text-lcov > coverage.lcov",
     "dev": "babel-node src/cli",
     "eslint": "eslint *.js src test decls",
-    "eslint:xunit-to-file": "envcheck ESLINT_FILE && compat \"npm run eslint -- -f junit --output-file $ESLINT_FILE\"",
+    "eslint:xunit-to-file": "envcheck ESLINT_FILE && compat \"npm run eslint -- --quiet -f junit --output-file $ESLINT_FILE\"",
     "flow": "flow",
     "flow:check": "flow check",
     "start": "node dist/cli",
