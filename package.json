@@ -46,7 +46,7 @@
     "babel-plugin-istanbul": "=1.0.2",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-plugin-transform-runtime": "^6.12.0",
-    "babel-preset-es2015-node6": "^0.2.0",
+    "babel-preset-es2015-node4": "^2.1.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
@@ -82,5 +82,8 @@
   },
   "release": {
     "verifyConditions": "condition-circle"
+  },
+  "engines": {
+    "node": ">=4"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015-node6/object-rest", "stage-0"],
+  "presets": ["es2015-node4", "stage-0"],
   "plugins": ["transform-runtime", "transform-flow-strip-types"],
   "env": {
     "development": {
