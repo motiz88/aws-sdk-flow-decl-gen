@@ -5,6 +5,7 @@ import resolveShapeRef from './resolveShapeRef';
 import translateShapeRef from './translateShapeRef';
 import simpleTypeAnnotation from './simpleTypeAnnotation';
 import { entries } from './utils';
+import stringEscape from 'js-string-escape';
 
 export default function translateShape (shapeOrRef: ?(ShapeRef | ShapeDef), shapes: Shapes, scope: string) {
   const next = (nextRef: ?(ShapeRef | ShapeDef)) => translateShape(nextRef, shapes, scope);
@@ -68,8 +69,12 @@ blob*/
       return b.booleanTypeAnnotation();
     case 'timestamp':
       return simpleTypeAnnotation('Date');
-    case 'string':
+    case 'string': {
+      if (shape.enum) {
+        return b.unionTypeAnnotation(shape.enum.map(value => b.stringLiteralTypeAnnotation(value, "'" + stringEscape(value) + "'")));
+      }
       return b.stringTypeAnnotation();
+    }
     default:
       throw new Error(shape.type);
   }
