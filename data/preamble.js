@@ -73,8 +73,16 @@ declare module 'aws-sdk' {
     waitFor(state: string, params: Object, callback: (err: ?Error, data: ?Object) => void): void;
   }
 
+  declare type $Callback<T> = (error: ?Error, data: ?T) => void;
+
   declare class Request<T> {
     promise(): Promise<T>;
+    abort(): this;
+    createReadStream(): stream$Readable;
+    eachItem(callback: Function): void;
+    eachPage(callback: ((err: ?Error, data: ?T) => boolean) | (err: ?Error, data: ?T, done: () => void) => boolean): void;
+    isPageable(): boolean;
+    send(callback?: $Callback<T>): void;
   }
-  declare type $Callback<T> = (error: ?Error, data: ?T) => void;
+
   declare type $APIMethod<Params, Result> = (params: Params, cb?: $Callback<Result>) => Request<Result>;
