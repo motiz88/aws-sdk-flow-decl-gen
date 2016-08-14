@@ -9,7 +9,7 @@
 
 Generate Flow declaration types from the AWS SDK for JavaScript.
 
-`aws-sdk-flow-decl-gen` is the declaration _generator_; the actual type declarations are [here](gh-decls-url). Occasionally, newer ones may be found on the CI server [here][ci-decls-url].
+`aws-sdk-flow-decl-gen` is the declaration _generator_; the actual type declarations are [here][gh-decls-url]. Occasionally, newer ones may be found on the CI server [here][ci-decls-url].
 
 This is an early release. Use with caution. There will be changes (to be communicated via semver).
 
