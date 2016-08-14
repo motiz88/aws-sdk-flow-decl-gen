@@ -3,7 +3,7 @@
 # Send a PR to $TARGET_REPO
 
 PACKAGE_NAME=$(jq -r ".name" package.json)
-PACKAGE_VERSION=$(jq -r ".version" package.json)
+PACKAGE_VERSION=$(npm view $PACKAGE_NAME@latest version)
 
 rm -rf targetRepo
 git clone $TARGET_REPO targetRepo --depth 1
