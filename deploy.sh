@@ -35,4 +35,4 @@ CONFIG
 fi
 
 hub/bin/hub push origin  $TARGET_BRANCH
-hub/bin/hub pull-request -m "Use $PACKAGE_NAME@$PACKAGE_VERSION"
+hub/bin/hub pull-request -m "Use $PACKAGE_NAME@$PACKAGE_VERSION" || true # ignore weird errors
