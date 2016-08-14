@@ -12,8 +12,14 @@ TARGET_BRANCH=gen-$PACKAGE_VERSION
 git checkout -b $TARGET_BRANCH
 cp ../test/artifacts/aws-sdk.decls.js .
 git add aws-sdk.decls.js
-if [[ -n "$(git diff --cached --exit-code)" ]]; then exit 0; fi
-git commit -m "feat: regenerate with $PACKAGE_NAME@$PACKAGE_VERSION" "--author=$GH_COMMITTER"
+git diff --cached --exit-code
+if [ $? -eq 0 ]; then
+  echo "No changes detected, not deploying"
+  exit 0;
+fi
+git config user.email "$GH_NAME"
+git config user.name "$GH_EMAIL"
+git commit -m "feat: regenerate with $PACKAGE_NAME@$PACKAGE_VERSION" "--author=$GH_NAME <$GH_EMAIL>"
 
 which hub || gem install hub
 
