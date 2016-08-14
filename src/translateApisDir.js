@@ -23,5 +23,10 @@ export default async function translateApisDir (apisDir: string): Promise<string
   result += indentString(body, 1, '  ');
   const postamble = await fs.readFile(require.resolve('../data/postamble.js'), 'utf8');
   result += postamble + '\n\n';
+  result = result
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/\n\n( *\})/g, '\n$1')
+    .replace(/(\{)\n\n/g, '$1\n')
+    .replace(/\n*$/, '\n');
   return result;
 }
