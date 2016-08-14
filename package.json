@@ -2,7 +2,10 @@
   "name": "aws-sdk-flow-decl-gen",
   "version": "0.0.0-semantic-release",
   "description": "Generate Flow declaration types from the AWS SDK for JavaScript",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d dist",
     "coverage:html": "nyc report --reporter=html",
@@ -12,6 +15,7 @@
     "eslint:xunit-to-file": "envcheck ESLINT_FILE && compat \"npm run eslint -- --quiet -f junit --output-file $ESLINT_FILE\"",
     "flow": "flow",
     "flow:check": "flow check",
+    "semantic-release": "semantic-release pre && npm run build && npm publish && semantic-release post",
     "start": "node dist/cli",
     "test": "npm run test:ci",
     "test:ci": "run-s --continue-on-error test:coverage-and-xunit flow:check eslint:xunit-to-file",
