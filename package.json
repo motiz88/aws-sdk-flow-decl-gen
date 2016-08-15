@@ -28,7 +28,7 @@
   "author": "Moti Zilberman <motiz88@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "ast-types": "^0.8.18",
+    "ast-types": "^0.9.0",
     "ast-types-flow": "0.0.7",
     "astring": "file:submodules/astring",
     "astring-flow": "^1.6.0",
