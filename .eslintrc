@@ -15,12 +15,18 @@
       "prefer-const": "error",
       "no-console": "error",
       "flowtype/define-flow-type": 1,
-      "flowtype/require-parameter-type": 1,
+      "flowtype/require-parameter-type": [
+          1,
+          {
+              "excludeArrowFunctions": true
+          }
+      ],
       "flowtype/require-return-type": [
           1,
           "always",
           {
-              "annotateUndefined": "never"
+              "annotateUndefined": "never",
+              "excludeArrowFunctions": true
           }
       ],
       "flowtype/space-after-type-colon": [
