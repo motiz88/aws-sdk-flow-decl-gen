@@ -58,7 +58,45 @@ declare module 'aws-sdk' {
   }
 
   declare class Config {
-    logger?: void | {write: Function} | {log: Function}
+    logger?: void | {write: Function} | {log: Function};
+    accessKeyId?: string;
+    secretAccessKey?: string;
+    sessionToken?: Credentials;
+    credentials?: Credentials;
+    credentialProvider?: CredentialProviderChain;
+    region?: string;
+    maxRetries?: number;
+    maxRedirects?: number;
+    sslEnabled?: boolean;
+    paramValidation?: boolean | {
+      min?: boolean,
+      max?: boolean,
+      pattern?: boolean,
+      enum?: boolean
+    };
+    computeChecksums?: boolean;
+    convertResponseTypes?: boolean;
+    correctClockSkew?: boolean;
+    s3ForcePathStyle?: boolean;
+    s3BucketEndpoint?: boolean;
+    s3DisableBodySigning?: boolean;
+    retryDelayOptions?: {
+      base?: number,
+      customBackoff?: (retryCount: number) => number
+    };
+    httpOptions?: {
+      proxy?: string,
+      agent?: httpAgent,
+      timeout?: number,
+      xhrAsync?: boolean,
+      xhrWithCredentials?: boolean
+    };
+    apiVersion?: string | Date;
+    apiVersions?: {[key: string]: string | Date};
+    logger?: void | {write: Function} | {log: Function};
+    systemClockOffset?: number;
+    signatureVersion?: string;
+    signatureCache?: boolean;
   }
 
   declare var config: Config;
