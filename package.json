@@ -55,6 +55,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
+    "chai-deep-match": "^1.0.2",
     "child-process-promise": "^2.0.3",
     "compat": "^1.0.3",
     "condition-circle": "^1.2.0",

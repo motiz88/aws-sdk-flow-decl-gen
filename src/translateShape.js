@@ -155,5 +155,20 @@ function tryTranslateDiscriminatedUnion (shape: ShapeDef, shapes: Shapes, scope:
       b.objectTypeProperty(b.identifier(payloadKey), next(members[payloadKey]), false)
     ])
   );
-  return b.intersectionTypeAnnotation([commonPart, b.unionTypeAnnotation(discriminatedParts)]);
+  return flattenIntersection(b.intersectionTypeAnnotation([commonPart, b.unionTypeAnnotation(discriminatedParts)]));
+}
+
+function flattenIntersection (intersectionType) {
+  invariant(intersectionType.type === 'IntersectionTypeAnnotation', 'Not an intersection type');
+  invariant(intersectionType.types.length === 2, 'Expected an intersection of two types');
+  invariant(intersectionType.types[0].type === 'ObjectTypeAnnotation', 'First type should be the common part, an object type');
+  invariant(intersectionType.types[1].type === 'UnionTypeAnnotation', 'Second type should be a union');
+  invariant(intersectionType.types[1].types.every(memberType => memberType.type === 'ObjectTypeAnnotation'), 'Second type must be a union of object types');
+  const [commonPart, {types: discriminatedParts}] = intersectionType.types;
+  return b.unionTypeAnnotation(discriminatedParts.map(part => ({
+    type: 'ObjectTypeAnnotation',
+    properties: [...commonPart.properties, ...part.properties],
+    indexers: [...commonPart.indexers, ...part.indexers],
+    callProperties: [...commonPart.callProperties, ...part.callProperties]
+  })));
 }

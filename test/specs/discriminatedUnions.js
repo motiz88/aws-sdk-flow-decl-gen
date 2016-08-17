@@ -106,42 +106,65 @@ const requiredPayloadShape = {
 describe('discriminated union', () => {
   it('should be inferred when correct and inlined', () => {
     translateShape(widgetGizmoCountShape, {}, 'dummyScope')
-      .should.have.property('type', 'IntersectionTypeAnnotation');
+      // .should.have.property('type', 'IntersectionTypeAnnotation');
+      .should.have.property('type', 'UnionTypeAnnotation');
   });
   it('should be inferred when correct and not inlined', () => {
     translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope')
-      .should.have.property('type', 'IntersectionTypeAnnotation');
+      // .should.have.property('type', 'IntersectionTypeAnnotation');
+      .should.have.property('type', 'UnionTypeAnnotation');
   });
-  it('common part should have only common properties', () => {
-    const commonPart = translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope')
-      .types[0];
-    commonPart.should.have.property('type', 'ObjectTypeAnnotation');
-    commonPart.should.have.property('properties')
-      .which.is.an('array')
-      .with.length(1);
+  it('should be a "flattened" intersection type', () => {
+    const ast = translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope');
+    ast.should.have.property('types').which.is.an('array').with.length(2);
+    ast.should.deep.match({
+      types: [{
+        type: 'ObjectTypeAnnotation',
+        properties: [
+          {key: {name: 'plainProperty'}, value: {type: 'NumberTypeAnnotation'}},
+          {key: {name: 'widgetType'}, value: {type: 'StringLiteralTypeAnnotation', value: 'WidgetA'}},
+          {key: {name: 'widgetAGizmoCount'}, value: {type: 'NumberTypeAnnotation'}}
+        ]
+      }, {
+        type: 'ObjectTypeAnnotation',
+        properties: [
+          {key: {name: 'plainProperty'}, value: {type: 'NumberTypeAnnotation'}},
+          {key: {name: 'widgetType'}, value: {type: 'StringLiteralTypeAnnotation', value: 'WidgetB'}},
+          {key: {name: 'widgetBGizmoCount'}, value: {type: 'NumberTypeAnnotation'}}
+        ]
+      }]
+    });
   });
-  it('discriminated parts should have only discriminated properties', () => {
-    const discriminatedParts = translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope')
-      .types[1].types;
-    discriminatedParts.should.be.an('array')
-      .with.length(2);
-    discriminatedParts[0].should.have.property('type', 'ObjectTypeAnnotation');
-    discriminatedParts[0].should.have.property('properties')
-      .which.is.an('array')
-      .with.length(2);
-    discriminatedParts[1].should.have.property('type', 'ObjectTypeAnnotation');
-    discriminatedParts[1].should.have.property('properties')
-      .which.is.an('array')
-      .with.length(2);
-    discriminatedParts[0].properties[0].should.have.deep.property('key.name', 'widgetType');
-    discriminatedParts[0].properties[0].should.have.deep.property('value.type', 'StringLiteralTypeAnnotation');
-    discriminatedParts[0].properties[0].should.have.deep.property('value.value', 'WidgetA');
-    discriminatedParts[0].properties[1].should.have.deep.property('key.name', 'widgetAGizmoCount');
-    discriminatedParts[1].properties[0].should.have.deep.property('key.name', 'widgetType');
-    discriminatedParts[1].properties[0].should.have.deep.property('value.type', 'StringLiteralTypeAnnotation');
-    discriminatedParts[1].properties[0].should.have.deep.property('value.value', 'WidgetB');
-    discriminatedParts[1].properties[1].should.have.deep.property('key.name', 'widgetBGizmoCount');
-  });
+  // it('common part should have only common properties', () => {
+  //   const commonPart = translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope')
+  //     .types[0];
+  //   commonPart.should.have.property('type', 'ObjectTypeAnnotation');
+  //   commonPart.should.have.property('properties')
+  //     .which.is.an('array')
+  //     .with.length(1);
+  // });
+  // it('discriminated parts should have only discriminated properties', () => {
+  //   const discriminatedParts = translateShape(widgetShapes.WidgetGizmoCount, widgetShapes, 'dummyScope')
+  //     .types[1].types;
+  //   discriminatedParts.should.be.an('array')
+  //     .with.length(2);
+  //   discriminatedParts[0].should.have.property('type', 'ObjectTypeAnnotation');
+  //   discriminatedParts[0].should.have.property('properties')
+  //     .which.is.an('array')
+  //     .with.length(2);
+  //   discriminatedParts[1].should.have.property('type', 'ObjectTypeAnnotation');
+  //   discriminatedParts[1].should.have.property('properties')
+  //     .which.is.an('array')
+  //     .with.length(2);
+  //   discriminatedParts[0].properties[0].should.have.deep.property('key.name', 'widgetType');
+  //   discriminatedParts[0].properties[0].should.have.deep.property('value.type', 'StringLiteralTypeAnnotation');
+  //   discriminatedParts[0].properties[0].should.have.deep.property('value.value', 'WidgetA');
+  //   discriminatedParts[0].properties[1].should.have.deep.property('key.name', 'widgetAGizmoCount');
+  //   discriminatedParts[1].properties[0].should.have.deep.property('key.name', 'widgetType');
+  //   discriminatedParts[1].properties[0].should.have.deep.property('value.type', 'StringLiteralTypeAnnotation');
+  //   discriminatedParts[1].properties[0].should.have.deep.property('value.value', 'WidgetB');
+  //   discriminatedParts[1].properties[1].should.have.deep.property('key.name', 'widgetBGizmoCount');
+  // });
   it('should not be inferred if there is ambiguity in payload keys', () => {
     translateShape(ambiguousPayloadShape, {}, 'dummyScope').should.have.property('type', 'ObjectTypeAnnotation');
   });
