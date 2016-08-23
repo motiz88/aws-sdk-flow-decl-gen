@@ -14,7 +14,7 @@ export default async function translateApisDir (apisDir: string): Promise<string
   const preamble = await fs.readFile(require.resolve('../data/preamble.js'), 'utf8');
   result += preamble + '\n\n';
   const services = await readServiceMap(apisDir);
-  const body = generate(await translateServiceMap(services, async (versionPattern: string): Promise<ServiceVersionDef> => {
+  const body = generate(await translateServiceMap(services, async (versionPattern: string): Promise<?ServiceVersionDef> => {
     await globby(path.resolve(apisDir, versionPattern + '.normal.json'));
     const [versionFile] = await globby(path.resolve(apisDir, versionPattern + '.normal.json'));
     if (!versionFile) return;
