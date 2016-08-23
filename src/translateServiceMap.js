@@ -6,7 +6,7 @@ import { entries } from './utils';
 
 export default async function translateServiceMap (
   services: ServiceMap,
-  getServiceVersion: (versionPattern: string) => Promise<ServiceVersionDef>
+  getServiceVersion: (versionPattern: string) => Promise<?ServiceVersionDef>
 ): Promise<mixed> {
   const allTypes = [];
   const allClasses = [];
