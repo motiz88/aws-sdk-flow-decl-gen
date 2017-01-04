@@ -57,7 +57,7 @@
     "chai": "^3.5.0",
     "chai-deep-match": "^1.0.2",
     "child-process-promise": "^2.0.3",
-    "compat": "^1.0.3",
+    "compat": "^1.0.4",
     "condition-circle": "^1.2.0",
     "cross-env": "^2.0.0",
     "env-check": "0.0.1",
