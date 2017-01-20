@@ -32,7 +32,7 @@
     "ast-types-flow": "0.0.7",
     "astring": "file:submodules/astring",
     "astring-flow": "^1.6.0",
-    "babel-runtime": "^6.11.6",
+    "babel-runtime": "^6.22.0",
     "casey-js": "^1.1.1",
     "globby": "^6.0.0",
     "indent-string": "^3.0.0",
