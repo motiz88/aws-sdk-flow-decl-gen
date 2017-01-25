@@ -35,7 +35,7 @@
     "babel-runtime": "^6.11.6",
     "casey-js": "^1.1.1",
     "globby": "^6.0.0",
-    "indent-string": "^3.0.0",
+    "indent-string": "^3.1.0",
     "is-empty-object": "^1.1.1",
     "iterable-regexp-exec": "^1.1.0",
     "iterall": "^1.0.2",
