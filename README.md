@@ -1,4 +1,6 @@
 # aws-sdk-flow-decl-gen
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/motiz88/aws-sdk-flow-decl-gen.svg)](https://greenkeeper.io/)
 [![circle][circle-image]][circle-url]
 [![npm][npm-image]][npm-url]
 [![coverage][coverage-image]][coverage-url]
