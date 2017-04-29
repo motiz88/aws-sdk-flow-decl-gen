@@ -76,7 +76,7 @@
     "mocha-junit-reporter": "^1.11.1",
     "mocha-lcov-reporter": "^1.2.0",
     "npm-run-all": "^3.0.0",
-    "nyc": "^8.1.0",
+    "nyc": "^10.3.0",
     "semantic-release": "^4.3.5",
     "tmp-promise": "^1.0.2"
   },
